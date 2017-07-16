@@ -7,5 +7,6 @@
 
 import {AppRegistry} from 'react-native';
 import App from './app/demo/app';
+import AppSecond from './app/demo/AppSecond';
 
-AppRegistry.registerComponent('LearnUI', () => App);
+AppRegistry.registerComponent('LearnUI', () => AppSecond);

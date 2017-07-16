@@ -18,6 +18,19 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+		this.renderItem = data => (
+				<TouchableHighlight
+					onPress={ _ => console.log('You touched me') }
+					style={styles.rowFront}
+					underlayColor={'orange'}
+				>
+					<View>
+						<Text>Fix broken park bench</Text>
+						<Text>12 Jones St</Text>
+					</View>
+				</TouchableHighlight>
+
+		)
 		this.state = {
 			basic: true,
 			listViewData: Array(20).fill('').map((_,i)=>`item #${i}`)
@@ -34,28 +47,12 @@ class App extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-
-
-
 				{
 					this.state.basic &&
 
 					<SwipeListView
 						dataSource={this.ds.cloneWithRows(this.state.listViewData)}
-						renderRow={ data => (
-
-								<TouchableHighlight
-									onPress={ _ => console.log('You touched me') }
-									style={styles.rowFront}
-									underlayColor={'orange'}
-								>
-									<View>
-										<Text>Fix broken park bench</Text>
-										<Text>12 Jones St</Text>
-									</View>
-								</TouchableHighlight>
-
-						)}
+						renderRow={this.renderItem}
 
 						renderHiddenRow={ (data, secId, rowId, rowMap) => (
 							<View style={styles.rowBack}>
